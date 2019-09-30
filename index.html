@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+	<div class="d-flex justify-content-center">
+		
+		<input  id="searchfield" type="search" name="users" placeholder="Search User" class="form-control w-25 mt-5">
+		<input id="ajaxrequest" type="button" name="" value="Search" class="btn btn-success mt-5 ml-3">
+	</div>
+
+	<div id="ajaxdisplay" class="d-flex justify-content-center flex-wrap">	
+	</div>
+
+	<script>
+		$(document).ready(function(){
+			$("#ajaxrequest").click(function(){
+				
+				$.ajax({
+					url:"https://jsonplaceholder.typicode.com/users",
+					method:"GET"
+				}).done(function(data){
+					$.each(data, function(){	
+							$("#ajaxdisplay").append('<div class="card"><img src="https://robohash.org/' +this['id']+ '" style="width: 150px"><h1>' +this['name'] + '</h1><h5>' +this['email']+ '</h5>');
+					})
+				})
+			})
+		})
+	</script>
+
+
+
+
+
+</body>
+</html>
